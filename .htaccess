@@ -1,0 +1,25 @@
+# Eski sartimizdi bu, nur icinde yatsin..
+#RewriteCond $1 !^(index\.php|themes|public|application|externals|robots\.txt)
+
+# Klasor iceriginin listelenmesini kapatiyoruz
+Options -Indexes
+
+# Skati, kalkanlar devrede mi abicim?
+RewriteEngine on
+
+# Gelen istem varolan bir dosyayi gosteriyorsa..
+RewriteCond %{REQUEST_FILENAME} -f
+# .. ve sonu .php veya .sql ile bitiyorsa..
+RewriteCond %{REQUEST_FILENAME} (\.php|\.sql)$
+# .. ama sonu index.php ile bitmiyorsa.. (ustteki kuralla cakismasin diye)
+RewriteCond %{REQUEST_FILENAME} !index\.php$
+# .. istenilen php dosyasina degil, sitenin router'ina yonlendir
+RewriteRule ^.*$ index.php [PT,L]
+
+# Yukaridaki kurala girmemisiz demek ki..
+# Gelen istem bir dosyayi gostermiyorsa..
+RewriteCond %{REQUEST_FILENAME} !-f
+# .. gelen istem bir klasoru de gostermiyorsa
+RewriteCond %{REQUEST_FILENAME} !-d
+# .. sitenin router'ina yonlendir
+RewriteRule ^.*$ index.php [PT,L]
