@@ -1,3 +1,5 @@
+####
+
 Template icinde modul view'ý gostermek icin WebIM'inki gibi bir yontem kullandim. Bunun icin su adimlari uyguladim:
 
 * application/core altinda MY_Controller diye bir class oluþturdum. Bu class MX_Controller class'ini extend ediyor. Modul controllerlarimiz da bundan sonra MX_Controller yerine bu controller'i extend edecek.
